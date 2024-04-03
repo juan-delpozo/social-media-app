@@ -1,18 +1,21 @@
-import React from 'react';
-import Post from './components/Post';
+import React, { useState } from 'react';
+import Feed from './components/Feed';
+import CreatePostForm from './components/CreatePostForm';
 
-function App(){
+function App() {
+  const [posts, setPosts] = useState([]);
 
-  return(
+  const handleCreatePost = (newPost) => {
+    setPosts([...posts, newPost]);
+  };
+
+  return (
     <div>
       <h1>Fakebook!</h1>
-        {/* CreatePostForm */}
-        {/* Feed */}
-        <Post content="This is a test post!" />
-        <Post content="This is another test post!" />
-
+      <CreatePostForm onCreatePost={handleCreatePost} />
+      <Feed posts={posts} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
